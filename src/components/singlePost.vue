@@ -10,8 +10,8 @@
       <h1>{{ post.title }}</h1>
       <img v-if="post.image" :src="imageUrlFor(post.image).width(480)" />
 
-      <h6>By: {{ post.name }}</h6>
-      <SanityBlocks :blocks="blocks" />
+      <!-- <h6>By: {{ post.name }}</h6> -->
+      <SanityBlocks :blocks="blocks" :serializers="serializers"/>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@
 import { SanityBlocks } from "sanity-blocks-vue-component";
 import sanity from "../client";
 import imageUrlBuilder from "@sanity/image-url";
+import YouTube from './YouTube.vue';
 
 const imageBuilder = imageUrlBuilder(sanity);
 
@@ -41,12 +42,19 @@ const query = `*[slug.current == $slug] {
 
 export default {
   name: "SinglePost",
-  components: { SanityBlocks },
+  components: { 
+      SanityBlocks
+      },
   data() {
     return {
       loading: true,
       post: [],
       blocks: [],
+      serializers: {
+        types: {
+          youtube: YouTube
+        }
+      }
     };
   },
   created() {
