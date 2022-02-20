@@ -8,7 +8,7 @@
 
     <div v-if="post" class="content">
       <h1>{{ post.title }}</h1>
-      <img v-if="post.image" :src="imageUrlFor(post.image).width(480)" />
+      <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" />
 
       <!-- <h6>By: {{ post.name }}</h6> -->
       <SanityBlocks :blocks="blocks" :serializers="serializers"/>
@@ -21,6 +21,7 @@ import { SanityBlocks } from "sanity-blocks-vue-component";
 import sanity from "../client";
 import imageUrlBuilder from "@sanity/image-url";
 import YouTube from './YouTube.vue';
+import Image from './Image.vue';
 
 const imageBuilder = imageUrlBuilder(sanity);
 
@@ -52,7 +53,8 @@ export default {
       blocks: [],
       serializers: {
         types: {
-          youtube: YouTube
+          youtube: YouTube,
+          image: Image
         }
       }
     };
@@ -73,6 +75,7 @@ export default {
           this.loading = false;
           this.post = post;
           this.blocks = post.body;
+          console.log(post)
         },
         (error) => {
           this.error = error;

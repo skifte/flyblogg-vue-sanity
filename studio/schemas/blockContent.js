@@ -60,6 +60,13 @@ export default {
     {
       type: 'image',
       options: {hotspot: true},
+      fields: [
+        {
+          name: 'caption',
+          type: 'text',
+          title: 'Bildetekst',
+        },
+      ],
     },
     {
       type: 'youtube'
