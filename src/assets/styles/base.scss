@@ -72,7 +72,7 @@ body {
   }
   
   h1 {
-    font-family: Roboto, serif;
+   // font-family: Roboto, serif;
     font-size: 4em;
     margin: 0 0 1em 0;
   }
@@ -100,10 +100,15 @@ body {
   
   p,
   ul,
-  ol {
+  ol{
     font-size: 1.3rem;
-    line-height: 1.75em;
-    margin: 1.2em 0;
+    line-height: 1.75;
+    margin: 1.2rem 0;
+  }
+
+  figcaption {
+    font-size: 1.3rem;
+    margin-top: 1rem;
   }
   
   a {
