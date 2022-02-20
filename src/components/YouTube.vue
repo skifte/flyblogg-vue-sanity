@@ -1,5 +1,10 @@
 <template>
-  <LiteYouTubeEmbed :id="videoId" title="YouTube-video"></LiteYouTubeEmbed>
+  <figure class="video">
+    <LiteYouTubeEmbed :id="videoId" title="title"></LiteYouTubeEmbed>
+    <figcaption v-if="figcaption">
+      {{figcaption}}
+    </figcaption>
+  </figure>
 </template>
 <script>
 import getId from 'get-youtube-id'
@@ -20,7 +25,19 @@ export default {
     url: {
       type: String,
       default: () => ''
+    },
+    caption: {
+      type: String
+    },
+    title: {
+      type: String,
+      default: 'Youtube-video'
     }
-  }
+  },
+   computed: {
+    figcaption: function() {
+      return this.caption
+    }
+   }
 };
 </script>

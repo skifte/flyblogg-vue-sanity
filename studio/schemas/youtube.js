@@ -19,6 +19,11 @@ export default {
         name: 'url',
         type: 'url',
         title: 'YouTube video URL'
+      },
+      {
+        name: 'caption',
+        type: 'text',
+        title: 'Beskrivelse (figcaption)'
       }
     ],
     preview: {
