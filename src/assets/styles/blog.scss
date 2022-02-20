@@ -1,0 +1,21 @@
+// blog list (home.vue):
+
+
+.post-item {
+  box-sizing: border-box;
+}
+
+// single blog post::after
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  h1 {
+    text-align: center;
+  }
+  h6 {
+    color: #aaa;
+    padding: 1em;
+  }

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="loading" v-if="loading">Loading...</div>
+  <div class="container">
+    <div class="spinner" v-if="loading"></div>
 
     <div v-if="error" class="error">
       {{ error }}
@@ -85,19 +85,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.content {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  max-width: 42em;
-}
-h1 {
-  text-align: center;
-}
-h6 {
-  color: #aaa;
-  padding: 1em;
-}
-</style>

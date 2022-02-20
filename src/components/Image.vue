@@ -39,7 +39,7 @@ export default {
     imageUrl: function() {
       return builder
         .image(this.asset)
-        .width(800)
+        .width(960)
         .auto(this.auto)
         .fit(this.fit)
     }

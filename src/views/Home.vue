@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="container">
     <h1>Welcome to your Vue + Sanity Blog</h1>
     <div class="posts">
       <div class="loading" v-if="loading">Loading...</div>
@@ -57,18 +57,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.home h1{
-    text-align: center;
-
-}
-.container {
-  margin: 0 auto;
-  max-width: 42em;
-  width: 100%;
-}
-.post-item {
-  box-sizing: border-box;
-}
-</style>
