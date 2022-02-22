@@ -1,32 +1,47 @@
 <template>
   <div class="container">
-    <h1>Welcome to your Vue + Sanity Blog</h1>
     <div class="posts">
       <div class="loading" v-if="loading">Loading...</div>
       <div v-if="error" class="error">
         {{ error }}
       </div>
-      <div class="container">
-        <div v-for="post in posts" class="post-item" :key="post._id">
+        <article v-for="post in posts" class="post-item" :key="post._id">
           <router-link :to="`/blog/${post.slug.current}`">
             <h2>{{ post.title }}</h2>
           </router-link>
           <p>{{post.excerpt}}</p>
+          <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" />
+          <div>
+            <router-link :to="`/blog/${post.slug.current}`">
+            Lese hele {{post.title}} →
+            </router-link>
+          </div>
           <hr />
-        </div>
-      </div>
+        </article>
     </div>
   </div>
 </template>
 
 <script>
 import sanity from "../client";
+import imageUrlBuilder from "@sanity/image-url";
 
+const imageBuilder = imageUrlBuilder(sanity);
+
+// https://www.sanity.io/docs/query-cheat-sheet#conditionals-64a36d80be73
 const query = `*[_type == "post"]{
   _id,
   title,
   slug,
-  excerpt
+  excerpt,
+  "image": teaserImage{
+    asset->{
+      _id,
+      url,
+      metadata
+    },
+  },
+  "estimatedReadingTime": round(length(pt::text(body)) / 4.5 / 180 )
 }[0...50]`;
 
 export default {
@@ -41,6 +56,9 @@ export default {
     this.fetchData();
   },
   methods: {
+    imageUrlFor(source) {
+      return imageBuilder.image(source);
+    },
     fetchData() {
       this.error = this.post = null;
       this.loading = true;
@@ -48,6 +66,7 @@ export default {
         (posts) => {
           this.loading = false;
           this.posts = posts;
+          console.log(posts)
         },
         (error) => {
           this.error = error;

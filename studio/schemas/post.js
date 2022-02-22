@@ -19,8 +19,8 @@ export default {
     },
     {
       name: "excerpt",
-      title: "Description",
-      type: "string",
+      title: "Excerpt",
+      type: "text",
       options: {
         maxLength: 200,
       },
