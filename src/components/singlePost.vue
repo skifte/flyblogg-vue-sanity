@@ -6,13 +6,13 @@
       {{ error }}
     </div>
 
-    <div v-if="post" class="content">
+    <article v-if="post" class="content blogpost">
       <h1>{{ post.title }}</h1>
-      <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" />
+      <!-- <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" /> -->
 
       <!-- <h6>By: {{ post.name }}</h6> -->
       <SanityBlocks :blocks="blocks" :serializers="serializers"/>
-    </div>
+    </article>
   </div>
 </template>
 
@@ -24,16 +24,27 @@ import YouTube from './YouTube.vue';
 import Image from './Image.vue';
 
 const imageBuilder = imageUrlBuilder(sanity);
+/*
 
+"body": body[]{
+    ...,
+    asset->{
+      _id,
+      url,
+      metadata
+    }
+  },
+*/
 const query = `*[slug.current == $slug] {
   _id,
   title,
   slug,
-  body, 
+  body,
  "image": mainImage{
   asset->{
   _id,
-  url
+  url,
+  metadata
 }
 },
 "name":author->name,
