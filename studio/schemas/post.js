@@ -32,12 +32,19 @@ export default {
       to: {type: 'author'},
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'teaserImage',
+      title: 'Teaser image',
       type: 'image',
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'alt-text'
+        },
+      ],
     },
     {
       name: 'categories',

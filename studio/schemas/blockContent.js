@@ -66,6 +66,11 @@ export default {
           type: 'text',
           title: 'Bildetekst',
         },
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'alt-text',
+        },
       ],
     },
     {

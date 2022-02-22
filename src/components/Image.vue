@@ -1,6 +1,6 @@
 <template>
 <figure>
-  <img :src="imageUrl" alt="" />
+  <img :src="imageUrl" :alt="altText" />
   <figcaption v-if="figcaption">
       {{figcaption}}
   </figcaption>
@@ -21,6 +21,10 @@ export default {
     caption: {
       type: String
     },
+    alt:  {
+      default: '',
+      type: String
+    },
     width: Number,
     height: Number,
     auto: {
@@ -35,6 +39,9 @@ export default {
   computed: {
     figcaption: function() {
       return this.caption
+    },
+    altText: function() {
+      return this.alt
     },
     imageUrl: function() {
       return builder
