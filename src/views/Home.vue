@@ -1,27 +1,36 @@
 <template>
   <div class="container">
-    <div class="posts">
-      <div class="loading" v-if="loading">Loading...</div>
+    <div class="bloglist">
+      <div class="text-center" v-if="loading">
+        <div class="spinner">Laster...</div>
+      </div>
       <div v-if="error" class="error">
         {{ error }}
       </div>
-        <article v-for="post in posts" class="post-item" :key="post._id">
-          <router-link :to="`/blog/${post.slug.current}`">
-            <h2>{{ post.title }}</h2>
+        <article v-for="post in posts" class="post-teaser" :key="post._id">
+          <router-link :to="`/blog/${post.slug.current}`" class="post-link">
+            <h2 class="post-title">{{ post.title }}</h2>
           </router-link>
-
-            <p>{{post.excerpt}}</p>
-            <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
+          <div class="meta">
+            <p class="pubdate"> 
+              <time v-if="post.publishedAt" :datetime="cropDate(post.publishedAt)">
+              {{localeDate(post.publishedAt)}}
+              </time>
+            </p>
+            <div class="dot" aria-hidden="true">·</div>
+            <p>
+            {{post.estimatedReadingTime}} min lesetid
+            </p>
+          </div>
+          <p class="excerpt">{{post.excerpt}}</p>
+          <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
         
-          <div>
+          <p>
             <router-link :to="`/blog/${post.slug.current}`" class="read-story">
             Les hele {{post.title}} →
             </router-link>
-          </div>
-          <footer class="card">
-            {{post.estimatedReadingTime}} min lesetid
-          </footer>
-          <hr />
+          </p>
+          <hr/>
         </article>
     </div>
   </div>
@@ -36,6 +45,11 @@ const imageBuilder = imageUrlBuilder(sanity);
 // https://www.sanity.io/docs/query-cheat-sheet#conditionals-64a36d80be73
 const query = `*[_type == "post"]{
   _id,
+  publishedAt,
+  categories->{
+    _id,
+    title
+  },
   title,
   slug,
   excerpt,
@@ -63,6 +77,14 @@ export default {
   methods: {
     imageUrlFor(source) {
       return imageBuilder.image(source);
+    },
+    cropDate(date) {
+      return date.split('T')[0]
+    },
+    localeDate(date) {
+      const pubdate = new Date(date)
+      const options = { year: 'numeric', month: 'long', day: 'numeric' }
+      return pubdate.toLocaleDateString('no', options)
     },
     fetchData() {
       this.error = this.post = null;

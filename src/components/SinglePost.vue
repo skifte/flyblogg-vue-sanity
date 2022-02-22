@@ -42,6 +42,7 @@ const imageBuilder = imageUrlBuilder(sanity);
 */
 const query = `*[slug.current == $slug] {
   _id,
+  publishedAt,
   title,
   slug,
   body,

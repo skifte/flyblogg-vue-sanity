@@ -1,7 +1,11 @@
+@use './variables' as v;
+
+
 .spinner {
     display: inline-block;
     width: 80px;
     height: 80px;
+    margin: 0 auto;
   }
   .spinner:after {
     content: " ";
@@ -10,8 +14,8 @@
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #fff;
-    border-color: #fff transparent #fff transparent;
+    border: 6px solid v.$text-color;
+    border-color: v.$text-color transparent v.$text-color transparent;
     animation: spinner 1.2s linear infinite;
   }
   @keyframes spinner {
