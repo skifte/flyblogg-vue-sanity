@@ -20,11 +20,18 @@
     padding: 1em;
   }
 
-  figure {
-    margin: 0 0 1rem;
-    figcaption {
-        font-style: italic;
-        //padding: .4rem;
-        //background-color: v.$gray-lightest;
+  .blogpost {
+    figure {
+      margin: 1.2rem -1rem 1.2rem -1rem;
+      padding: 1rem;
+      background-color: v.$gray-lightest;
+      img {
+        vertical-align: middle;
+      }
+      figcaption {
+          font-style: italic;
+          margin: 0;
+          padding-top: 1rem;
+      }
     }
-  }
+}
