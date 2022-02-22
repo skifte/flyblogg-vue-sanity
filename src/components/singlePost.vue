@@ -9,8 +9,6 @@
     <article v-if="post" class="content blogpost">
       <h1>{{ post.title }}</h1>
       <!-- <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" /> -->
-
-      <!-- <h6>By: {{ post.name }}</h6> -->
       <SanityBlocks :blocks="blocks" :serializers="serializers"/>
     </article>
   </div>
@@ -34,19 +32,19 @@ const imageBuilder = imageUrlBuilder(sanity);
       metadata
     }
   },
-*/
-const query = `*[slug.current == $slug] {
-  _id,
-  title,
-  slug,
-  body,
- "image": mainImage{
+  "image": mainImage{
   asset->{
   _id,
   url,
   metadata
 }
 },
+*/
+const query = `*[slug.current == $slug] {
+  _id,
+  title,
+  slug,
+  body,
 "name":author->name,
 "authorImage":author->image
 }[0]
