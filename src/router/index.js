@@ -18,7 +18,7 @@ const routes = [
   {
     path: "/blog/:slug",
     name: "SinglePost",
-    component: () => import("../components/SinglePost.vue"),
+    component: () => import('@/components/SinglePost.vue'),
   },
 ]
 
