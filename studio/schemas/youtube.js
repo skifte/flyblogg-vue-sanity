@@ -21,6 +21,11 @@ export default {
         title: 'YouTube video URL'
       },
       {
+        name: 'title',
+        type: 'string',
+        title: 'Tittel'
+      },
+      {
         name: 'caption',
         type: 'text',
         title: 'Beskrivelse (figcaption)'
@@ -28,7 +33,8 @@ export default {
     ],
     preview: {
         select: {
-            url: 'url'
+            url: 'url',
+            caption: 'caption'
         },
         component: Preview
     }
