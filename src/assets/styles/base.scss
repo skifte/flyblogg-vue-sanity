@@ -34,49 +34,34 @@ body {
   text-align: center;
 }
 
+.flex-wrap {
+  display: flex;
+}
 
+.card {
+  padding: 1rem;
+  background-color: v.$gray-lightest;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
   
-  #nav {
-    text-align: center;
-  
-    padding: 30px;
-  }
-  
-  #nav a {
+.siteheader {
+  padding: 2rem;
+  margin-bottom: 2.4rem;
+  a {
     font-weight: bold;
     color: #2c3e50;
   }
-  
-  #nav a.router-link-exact-active {
+  .router-link-exact-active {
     color: #42b983;
   }
-  
-  
-  .siteheader {  
-    background-image: linear-gradient(to bottom, v.$blueLight, v.$blue);
-  }
+}
 
-  .sitenav {
-    a {
-      text-decoration: none;
-      color:#f1f1f1;
-      padding: 2rem 1rem;
-      display: inline-block;
-      text-shadow:0 1px 1px rgba(0, 0, 0, 0.3);
-      // border-bottom:1px solid v.$grayLighter;
-      &.router-link-active,
-      &:hover {
-        color:#333;
-        //text-decoration: underline;
-         background-color:#f1f1f1;
-      }
-    }
-  }
-
-  .sitefooter {
-    margin-top: 4.8rem;
-    background-color: v.$text-color;
-    color: #fff;
-    min-height: 8rem;
-    padding: 2.4rem 0;
-  }
+.sitefooter {
+  margin-top: 4.8rem;
+  background-color: v.$gray-dark;
+  color: #fff;
+  min-height: 8rem;
+  padding: 2.4rem 0;
+}

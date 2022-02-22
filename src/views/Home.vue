@@ -9,13 +9,18 @@
           <router-link :to="`/blog/${post.slug.current}`">
             <h2>{{ post.title }}</h2>
           </router-link>
-          <p>{{post.excerpt}}</p>
-          <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" />
+
+            <p>{{post.excerpt}}</p>
+            <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
+        
           <div>
-            <router-link :to="`/blog/${post.slug.current}`">
-            Lese hele {{post.title}} →
+            <router-link :to="`/blog/${post.slug.current}`" class="read-story">
+            Les hele {{post.title}} →
             </router-link>
           </div>
+          <footer class="card">
+            {{post.estimatedReadingTime}} min lesetid
+          </footer>
           <hr />
         </article>
     </div>

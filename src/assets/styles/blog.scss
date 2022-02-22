@@ -12,15 +12,27 @@
     flex-direction: column;
     margin: 0 auto;
   }
-  h1 {
-    text-align: center;
-  }
-  h6 {
-    color: #aaa;
-    padding: 1em;
+ 
+
+  .post-item {
+    h2 {
+      margin-top: 0;
+    }
+    .read-story {
+      display:block;
+      margin: 1.2rem 0;
+      transition: .5s;
+      color: v.$link-color;
+      text-decoration: none;
+      &:hover {
+        color: v.$link-color-hover;
+        text-decoration: underline;
+      }
+    }
   }
 
   .blogpost {
+    /*fullvisning*/
     figure {
       margin: 1.2rem -1rem 1.2rem -1rem;
       padding: 1rem;

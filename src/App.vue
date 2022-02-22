@@ -2,8 +2,8 @@
   <header class="siteheader">
     <div class="container">
       <nav class="sitenav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Flyblogg</router-link> | 
+      <router-link to="/about">Om Anders Skifte</router-link>
     </nav>
     </div>
   </header>
