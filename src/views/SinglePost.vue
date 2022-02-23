@@ -18,32 +18,14 @@
 </template>
 
 <script>
-import { SanityBlocks } from "sanity-blocks-vue-component";
-import sanity from "../client";
-import imageUrlBuilder from "@sanity/image-url";
-import YouTube from '@/components/YouTube.vue';
-import Image from '@/components/Image.vue';
-import Meta from '@/components/MetaSection';
+import { SanityBlocks } from "sanity-blocks-vue-component"
+import sanity from "../client"
+import imageUrlBuilder from "@sanity/image-url"
+import YouTube from '@/components/YouTube.vue'
+import Image from '@/components/Image.vue'
+import Meta from '@/components/MetaSection'
 
-const imageBuilder = imageUrlBuilder(sanity);
-/*
-
-"body": body[]{
-    ...,
-    asset->{
-      _id,
-      url,
-      metadata
-    }
-  },
-  "image": mainImage{
-  asset->{
-  _id,
-  url,
-  metadata
-}
-},
-*/
+const imageBuilder = imageUrlBuilder(sanity)
 const query = `*[slug.current == $slug] {
   _id,
   publishedAt,
@@ -52,8 +34,7 @@ const query = `*[slug.current == $slug] {
   body,
 "name":author->name,
 "authorImage":author->image
-}[0]
-`;
+}[0]`
 
 export default {
   name: "SinglePost",
@@ -75,11 +56,11 @@ export default {
     };
   },
   created() {
-    this.fetchData();
+    this.fetchData()
   },
   methods: {
     imageUrlFor(source) {
-      return imageBuilder.image(source);
+      return imageBuilder.image(source)
     },
     fetchData() {
       this.error = this.post = null;
@@ -87,16 +68,33 @@ export default {
 
       sanity.fetch(query, { slug: this.$route.params.slug }).then(
         (post) => {
-          this.loading = false;
-          this.post = post;
-          this.blocks = post.body;
           console.log(post)
+          this.loading = false
+          if (post !== null) {
+            this.post = post
+            this.blocks = post.body
+            document.title = post.title + ' - Anders Skifte'
+          } else {
+            // Fant ikke data som matchet slug
+            // vis 404-siden uten å endre url
+            this.$router.push({
+              name: '404',
+              // preserve current path and remove the first char to avoid the target URL starting with `//`
+              params: { 
+                pathMatch: this.$route.path.substring(1).split('/'),
+                trigger: 'no-data'
+                },
+              // preserve existing query and hash if any
+              query: this.$route.query,
+              hash: this.$route.hash
+            })
+          } // else 
         },
         (error) => {
-          this.error = error;
+          this.error = error
         }
-      );
-    },
-  },
-};
+      )
+    }
+  }
+}
 </script>
