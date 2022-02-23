@@ -22,8 +22,12 @@ const routes = [
   {
     path: "/flyblogg/:slug",
     name: "SinglePost",
-    component: () => import('@/views/SinglePost.vue'),
+    component: () => import(/* webpackChunkName: "404" */ '@/views/SinglePost.vue')
   },
+  { 
+    path: '/:pathMatch(.*)*', 
+    name: '404', 
+    component: import(/* webpackChunkName: "404" */ '@/views/404.vue') }
 ]
 
 const router = createRouter({
