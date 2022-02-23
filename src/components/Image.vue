@@ -1,8 +1,11 @@
 <template>
 <figure>
   <img :src="imageUrl" :alt="altText" />
-  <figcaption v-if="figcaption">
+  <figcaption v-if="figcaption || (photographer && photographerUrl)">
       {{figcaption}}
+      <span v-if="photographer && photographerUrl" class="attribution">
+        Foto: <a :href="photographerUrl">{{photographer}}</a>.
+      </span>
   </figcaption>
   </figure>
 </template>
@@ -25,6 +28,12 @@ export default {
       default: '',
       type: String
     },
+    attribution: {
+      type: String
+    },
+    attributionUrl: {
+      type: URL
+    },
     width: Number,
     height: Number,
     auto: {
@@ -39,6 +48,12 @@ export default {
   computed: {
     figcaption: function() {
       return this.caption
+    },
+    photographer: function() {
+      return this.attribution
+    },
+    photographerUrl: function() {
+      return this.attributionUrl
     },
     altText: function() {
       return this.alt

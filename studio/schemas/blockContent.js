@@ -65,15 +65,25 @@ export default {
       options: {hotspot: true},
       fields: [
         {
+          name: 'alt',
+          type: 'string',
+          title: 'alt-text',
+        },
+        {
           name: 'caption',
           type: 'text',
           title: 'Bildetekst',
         },
         {
-          name: 'alt',
+          name: 'attribution',
           type: 'string',
-          title: 'alt-text',
+          title: 'Fotograf'
         },
+        {
+          name: 'attributionUrl',
+          type: 'url',
+          title: 'Fotograf-URL'
+        }
       ],
     },
     {
