@@ -2,7 +2,7 @@
   <header class="siteheader">
     <div class="container">
       <nav class="sitenav">
-      <router-link to="/">Flyblogg</router-link> | 
+      <router-link to="/flyblogg" :class="{'router-link-active': $route.name === 'SinglePost'}">Flyblogg</router-link> | 
       <router-link to="/about">Om Anders Skifte</router-link>
     </nav>
     </div>

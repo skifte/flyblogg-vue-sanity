@@ -1,13 +1,16 @@
 <template>
   <div class="container">
-    <div class="spinner" v-if="loading"></div>
+    <div class="text-center" v-if="loading">
+      <div class="spinner">Laster...</div>
+    </div>
 
     <div v-if="error" class="error">
       {{ error }}
     </div>
 
-    <article v-if="post" class="content blogpost">
-      <h1>{{ post.title }}</h1>
+    <article v-if="post" class="blogpost">
+      <h1 class="post-title">{{ post.title }}</h1>
+      <Meta :post="post"/>
       <!-- <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" /> -->
       <SanityBlocks :blocks="blocks" :serializers="serializers"/>
     </article>
@@ -18,8 +21,9 @@
 import { SanityBlocks } from "sanity-blocks-vue-component";
 import sanity from "../client";
 import imageUrlBuilder from "@sanity/image-url";
-import YouTube from './YouTube.vue';
-import Image from './Image.vue';
+import YouTube from '@/components/YouTube.vue';
+import Image from '@/components/Image.vue';
+import Meta from '@/components/MetaSection';
 
 const imageBuilder = imageUrlBuilder(sanity);
 /*
@@ -54,7 +58,8 @@ const query = `*[slug.current == $slug] {
 export default {
   name: "SinglePost",
   components: { 
-      SanityBlocks
+      SanityBlocks,
+      Meta
       },
   data() {
     return {

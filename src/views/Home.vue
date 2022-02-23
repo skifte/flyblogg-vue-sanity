@@ -11,17 +11,7 @@
           <router-link :to="`/blog/${post.slug.current}`" class="post-link">
             <h2 class="post-title">{{ post.title }}</h2>
           </router-link>
-          <div class="meta">
-            <p class="pubdate"> 
-              <time v-if="post.publishedAt" :datetime="cropDate(post.publishedAt)">
-              {{localeDate(post.publishedAt)}}
-              </time>
-            </p>
-            <div class="dot" aria-hidden="true">·</div>
-            <p>
-            {{post.estimatedReadingTime}} min lesetid
-            </p>
-          </div>
+          <Meta :post="post"/>
           <p class="excerpt">{{post.excerpt}}</p>
           <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
         
@@ -39,6 +29,7 @@
 <script>
 import sanity from "../client";
 import imageUrlBuilder from "@sanity/image-url";
+import Meta from '@/components/MetaSection';
 
 const imageBuilder = imageUrlBuilder(sanity);
 
@@ -65,6 +56,9 @@ const query = `*[_type == "post"]{
 
 export default {
   name: "Home",
+  components: { 
+    Meta
+  },
   data() {
     return {
       loading: true,
@@ -84,14 +78,6 @@ export default {
     },
     imageUrlFor(source) {
       return imageBuilder.image(source);
-    },
-    cropDate(date) {
-      return date.split('T')[0]
-    },
-    localeDate(date) {
-      const pubdate = new Date(date)
-      const options = { year: 'numeric', month: 'long', day: 'numeric' }
-      return pubdate.toLocaleDateString('no', options)
     },
     fetchData() {
       this.error = this.post = null;
