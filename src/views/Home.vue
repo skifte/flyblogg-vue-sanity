@@ -7,7 +7,7 @@
       <div v-if="error" class="error">
         {{ error }}
       </div>
-        <article v-for="post in posts" class="post-teaser" :key="post._id">
+        <article v-for="(post, index) in posts" class="post-teaser" :key="post._id" @click="goToBlogPost($event, post.slug.current)">
           <router-link :to="`/blog/${post.slug.current}`" class="post-link">
             <h2 class="post-title">{{ post.title }}</h2>
           </router-link>
@@ -26,11 +26,11 @@
           <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
         
           <p>
-            <router-link :to="`/blog/${post.slug.current}`" class="read-story">
+            <router-link :to="`/blog/${post.slug.current}`" class="read-more">
             Les hele {{post.title}} →
             </router-link>
           </p>
-          <hr/>
+          <hr v-if="(index + 1) !== posts.length" aria-hidden="true"/>
         </article>
     </div>
   </div>
@@ -75,6 +75,13 @@ export default {
     this.fetchData();
   },
   methods: {
+    goToBlogPost(event, slug) {
+      const isTextSelected = window.getSelection().toString()
+      const isTargetLink = event.target.tagName.toLowerCase() === 'a' // prevent router.push
+      if (!isTextSelected && !isTargetLink) {
+        this.$router.push({ name: 'SinglePost', params: { slug: slug }})
+      }
+    },
     imageUrlFor(source) {
       return imageBuilder.image(source);
     },
