@@ -10,6 +10,10 @@
 
 <script>
 export default {
-  name: "NotFoundPage"
+  name: "NotFoundPage",
+  created() {
+    document.title = '404 - Flyblogg - Anders Skifte'
+  }
 }
 </script>
+

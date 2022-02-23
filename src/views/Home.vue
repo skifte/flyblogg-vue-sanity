@@ -67,6 +67,7 @@ export default {
   },
   created() {
     this.fetchData();
+    document.title = 'Flyblogg - Anders Skifte'
   },
   methods: {
     goToBlogPost(event, slug) {
