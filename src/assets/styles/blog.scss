@@ -33,29 +33,17 @@
   cursor: pointer;
 }
 
-.post-title {
-  font-weight: 400;
-  font-size:2.8rem;
-}
-
-.post-teaser,
-.blogpost {
-  .post-title {
-    margin: 0;
-  }
-}
-
 .meta {
-  margin: 1.2rem 0;
+  margin: 1.2em 0;
   display: flex;
   font-style: italic;
   p {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 1.1rem;
+    font-size: inherit;
   }
   .dot {
-    padding: .45rem;
+    padding: 0 .45rem;
     font-weight: 600;
   }
 }
@@ -75,4 +63,10 @@
           padding-top: 1rem;
       }
     }
+}
+
+@media screen and (min-width: 768px) {
+  .meta {
+    font-size: 1.1rem;
+  }
 }
