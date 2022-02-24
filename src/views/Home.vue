@@ -4,24 +4,22 @@
       <div class="text-center" v-if="loading">
         <div class="spinner">Laster...</div>
       </div>
-      <div v-if="error" class="error">
-        {{ error }}
-      </div>
-        <article v-for="(post, index) in posts" class="post-teaser" :key="post._id" @click="goToBlogPost($event, post.slug.current)">
-          <router-link :to="`/flyblogg/${post.slug.current}`" class="post-link">
-            <h2 class="post-title">{{ post.title }}</h2>
+      <Error v-if="error" :error="error"/>
+      <article v-for="(post, index) in posts" class="post-teaser" :key="post._id" @click="goToBlogPost($event, post.slug.current)">
+        <router-link :to="`/flyblogg/${post.slug.current}`" class="post-link">
+          <h2 class="post-title">{{ post.title }}</h2>
+        </router-link>
+        <Meta :post="post"/>
+        <p class="excerpt">{{post.excerpt}}</p>
+        <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
+      
+        <p>
+          <router-link :to="`/flyblogg/${post.slug.current}`" class="read-more">
+          Les hele {{post.title}} →
           </router-link>
-          <Meta :post="post"/>
-          <p class="excerpt">{{post.excerpt}}</p>
-          <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
-        
-          <p>
-            <router-link :to="`/flyblogg/${post.slug.current}`" class="read-more">
-            Les hele {{post.title}} →
-            </router-link>
-          </p>
-          <hr v-if="(index + 1) !== posts.length" aria-hidden="true"/>
-        </article>
+        </p>
+        <hr v-if="(index + 1) !== posts.length" aria-hidden="true"/>
+      </article>
     </div>
   </div>
 </template>
@@ -30,6 +28,7 @@
 import sanity from "../client";
 import imageUrlBuilder from "@sanity/image-url";
 import Meta from '@/components/MetaSection';
+import Error from '@/components/Error';
 
 const imageBuilder = imageUrlBuilder(sanity);
 
@@ -57,12 +56,14 @@ const query = `*[_type == "post"]{
 export default {
   name: "Home",
   components: { 
-    Meta
+    Meta,
+    Error
   },
   data() {
     return {
       loading: true,
       posts: [],
+      error: null
     };
   },
   created() {
@@ -87,10 +88,10 @@ export default {
         (posts) => {
           this.loading = false;
           this.posts = posts;
-          console.log(posts)
         },
         (error) => {
-          this.error = error;
+          this.error = error
+          this.loading = false
         }
       );
     },

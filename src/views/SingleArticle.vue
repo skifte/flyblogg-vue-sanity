@@ -4,9 +4,7 @@
       <div class="spinner">Laster...</div>
     </div>
 
-    <div v-if="error" class="error">
-      {{ error }}
-    </div>
+    <Error v-if="error" :error="error"/>
 
     <article v-if="post" class="blogpost">
       <h1 class="post-title">{{ post.title }}</h1>
@@ -89,10 +87,11 @@
 </template>
 
 <script>
-import { SanityBlocks } from "sanity-blocks-vue-component";
-import sanity from "../client";
-import imageUrlBuilder from "@sanity/image-url";
-import Image from "@/components/Image.vue";
+import { SanityBlocks } from "sanity-blocks-vue-component"
+import sanity from "../client"
+import imageUrlBuilder from "@sanity/image-url"
+import Image from "@/components/Image.vue"
+import Error from "@/components/Error.vue";
 
 const imageBuilder = imageUrlBuilder(sanity);
 const query = `*[slug.current == $slug] {
@@ -106,11 +105,13 @@ export default {
   name: "SingleArticle",
   components: {
     SanityBlocks,
+    Error
   },
   data() {
     return {
       loading: true,
       post: [],
+      error: null,
       blocks: [],
       serializers: {
         types: {
@@ -132,7 +133,6 @@ export default {
 
       sanity.fetch(query, { slug: this.$route.path.substring(1) }).then(
         (post) => {
-          console.log(post);
           this.loading = false;
           if (post !== null) {
             this.post = post;
@@ -156,6 +156,7 @@ export default {
         },
         (error) => {
           this.error = error;
+          this.loading = false;
         }
       );
     },

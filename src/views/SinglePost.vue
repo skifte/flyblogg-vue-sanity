@@ -4,9 +4,7 @@
       <div class="spinner">Laster...</div>
     </div>
 
-    <div v-if="error" class="error">
-      {{ error }}
-    </div>
+    <Error v-if="error" :error="error"/>
 
     <article v-if="post" class="blogpost">
       <h1 class="post-title">{{ post.title }}</h1>
@@ -26,6 +24,7 @@ import YouTube from '@/components/YouTube.vue'
 import Image from '@/components/Image.vue'
 import Map from '@/components/GPSTrack.vue'
 import Meta from '@/components/MetaSection'
+import Error from '@/components/Error'
 
 const imageBuilder = imageUrlBuilder(sanity)
 const query = `*[slug.current == $slug] {
@@ -50,12 +49,14 @@ export default {
   components: { 
       SanityBlocks,
       Meta,
-      Map
+      Map,
+      Error
       },
   data() {
     return {
       loading: true,
       post: [],
+      error: null,
       blocks: [],
       serializers: {
         types: {
@@ -78,7 +79,6 @@ export default {
 
       sanity.fetch(query, { slug: this.$route.params.slug }).then(
         (post) => {
-          console.log(post)
           this.loading = false
           if (post !== null) {
             this.post = post
@@ -102,6 +102,7 @@ export default {
         },
         (error) => {
           this.error = error
+          this.loading = false
         }
       )
     }
