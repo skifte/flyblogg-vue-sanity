@@ -62,6 +62,12 @@ export default {
       title: 'Body',
       type: 'blockContent',
     },
+    {
+      name: 'gpstrack',
+      title: 'GPS-track (kart)',
+      type: 'reference',
+      to: {type: 'gps'},
+    },
   ],
 
   preview: {
