@@ -41,7 +41,8 @@ const query = `*[slug.current == $slug] {
     caption,
   },
 "name":author->name,
-"authorImage":author->image
+"authorImage":author->image,
+"estimatedReadingTime": round(length(pt::text(body)) / 4.5 / 180 )
 }[0]`
 
 export default {
