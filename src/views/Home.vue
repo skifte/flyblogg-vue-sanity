@@ -8,7 +8,7 @@
         {{ error }}
       </div>
         <article v-for="(post, index) in posts" class="post-teaser" :key="post._id" @click="goToBlogPost($event, post.slug.current)">
-          <router-link :to="`/blog/${post.slug.current}`" class="post-link">
+          <router-link :to="`/flyblogg/${post.slug.current}`" class="post-link">
             <h2 class="post-title">{{ post.title }}</h2>
           </router-link>
           <Meta :post="post"/>
@@ -16,7 +16,7 @@
           <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
         
           <p>
-            <router-link :to="`/blog/${post.slug.current}`" class="read-more">
+            <router-link :to="`/flyblogg/${post.slug.current}`" class="read-more">
             Les hele {{post.title}} →
             </router-link>
           </p>
