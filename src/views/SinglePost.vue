@@ -13,6 +13,7 @@
       <Meta :post="post"/>
       <!-- <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" /> -->
       <SanityBlocks :blocks="blocks" :serializers="serializers"/>
+      <Map v-if="post.gpstrack" :gpstrack="post.gpstrack"/>
     </article>
   </div>
 </template>
@@ -23,6 +24,7 @@ import sanity from "../client"
 import imageUrlBuilder from "@sanity/image-url"
 import YouTube from '@/components/YouTube.vue'
 import Image from '@/components/Image.vue'
+import Map from '@/components/GPSTrack.vue'
 import Meta from '@/components/MetaSection'
 
 const imageBuilder = imageUrlBuilder(sanity)
@@ -32,6 +34,12 @@ const query = `*[slug.current == $slug] {
   title,
   slug,
   body,
+  "gpstrack": gpstrack->{
+    _id,
+    title,
+    src,
+    caption,
+  },
 "name":author->name,
 "authorImage":author->image
 }[0]`
@@ -40,7 +48,8 @@ export default {
   name: "SinglePost",
   components: { 
       SanityBlocks,
-      Meta
+      Meta,
+      Map
       },
   data() {
     return {

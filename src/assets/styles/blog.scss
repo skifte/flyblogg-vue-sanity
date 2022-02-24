@@ -48,21 +48,31 @@
   }
 }
 
-  .blogpost {
-    /*fullvisning*/
-    figure {
-      margin: 1.2rem -1rem 1.2rem -1rem;
-      padding: 1rem;
-      background-color: v.$gray-lightest;
-      img {
-        vertical-align: middle;
-      }
-      figcaption {
-          font-style: italic;
-          margin: 0;
-          padding-top: 1rem;
-      }
-    }
+ 
+// fullvisning
+.figure {
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+  background-color: v.$gray-lightest;
+  img {
+    vertical-align: middle;
+  }
+  figcaption {
+      font-style: italic;
+      margin: 0;
+      padding: 1rem 2rem 0 2rem;
+  }
+}
+
+.figure.photo {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding: 1rem;
+}
+
+.figure.map {
+  margin: 1.2em 0;
+  padding-bottom: 1rem;
 }
 
 @media screen and (min-width: 768px) {

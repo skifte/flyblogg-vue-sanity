@@ -1,5 +1,5 @@
 <template>
-<figure>
+<figure class="figure photo">
   <img :src="imageUrl" :alt="altText" />
   <figcaption v-if="figcaption || (photographer && photographerUrl)">
       {{figcaption}}
