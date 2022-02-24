@@ -83,7 +83,7 @@ export default {
           if (post !== null) {
             this.post = post
             this.blocks = post.body
-            document.title = post.title + ' - Anders Skifte'
+            document.title = post.title
           } else {
             // Fant ikke data som matchet slug
             // vis 404-siden uten å endre url

@@ -77,6 +77,13 @@ main {
   color: #fff;
   min-height: 12rem;
   padding: 2.4rem 0;
+  a {
+    color: #fff;
+    &:hover,
+    &:focus {
+      color: burlywood;
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
