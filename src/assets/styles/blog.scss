@@ -1,33 +1,6 @@
 // blog list (home.vue):
 @use './variables' as v;
 
-.post-link,
-.read-more,
-.post-teaser {
-  transition: all .4s;
-}
-
-.post-link {
-  text-decoration-color: #fff;
-  color: v.$text-color;
-  &:hover {
-    color: v.$link-color-hover;
-    text-decoration: underline;
-    text-decoration-color: v.$link-color-hover;
-  }
-}
-.read-more {
-  display:block;
-  margin: 1.2rem 0;
-  color: v.$link-color;
-  text-decoration-color: #fff;
-  &:hover {
-    color: v.$link-color-hover;
-    text-decoration: underline;
-    text-decoration-color: v.$link-color-hover;
-  }
-}
-
 .post-teaser {
   box-sizing: border-box;
   cursor: pointer;
