@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 48.248676 57.976875" xmlns="http://www.w3.org/2000/svg">
 <style>
+    svg {
+        transform: rotate(-.03turn);
+    }
     path {
         fill: black;
     }
