@@ -2,10 +2,16 @@
   <div class="app-wrapper">
     <header class="siteheader">
       <div class="container">
-        <nav class="sitenav">
-        <router-link :to="{ name: 'Home'}" :class="{'router-link-active': $route.name === 'SinglePost'}">Flyblogg</router-link> | 
-        <router-link :to="{ name: 'About'}">Om Anders Skifte</router-link>
-      </nav>
+        <div class="sitenav-wrapper">
+          <div class="svg-wrapper"> 
+            <SVGairplane/> 
+          </div>
+          <nav class="sitenav">
+            <router-link :to="{ name: 'Home'}" :class="{'router-link-active': $route.name === 'SinglePost'}">Flyblogg</router-link>
+            <router-link :to="{ name: 'About'}">Om Anders Skifte</router-link>
+          </nav>
+        </div>
+        <hr aria-hidden="true"/>
       </div>
     </header>
     <main>
@@ -18,3 +24,12 @@
     </div>
   </footer>
 </template>
+
+<script>
+import SVGairplane from './components/SVGairplane.vue'
+export default {
+  components: {
+    SVGairplane
+  }
+}
+</script>

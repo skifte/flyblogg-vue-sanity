@@ -61,15 +61,61 @@ main {
 }
   
 .siteheader {
-  padding: 2rem 0;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-  }
-  .router-link-active {
-    color: v.$link-color;
+  padding-top: 2rem;
+  font-size: 1.2rem;
+  
+  .sitenav {
+    place-self: center;
+    a {
+      place-self: center;
+      font-weight: 600;
+      &:first-of-type {
+        margin-right: 1rem;
+        padding-right: 1rem;
+        border-right: 1px solid #333;
+      }
+    }
+    .router-link-active {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
   }
 }
+
+.sitenav-wrapper {
+  display:flex;
+  align-items: center;
+  .svg-wrapper {
+    width: 2rem;
+    height: 2rem;
+    padding: 1rem;
+    margin: 0 1rem;
+    background-color: black;
+    border-radius: 50%;
+    box-sizing: content-box;
+    .svg-airplane {
+      height: auto;
+      width: 1.8rem;
+      /*animation-name: spin-airplane;
+      animation-duration: 1500ms;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in-out;*/
+      transform: rotate(-.03turn);
+    }
+  }
+}
+
+/*@keyframes spin-airplane {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(350deg);
+  }
+}*/
+
+
+
 
 .sitefooter {
   box-sizing: border-box;
@@ -86,8 +132,8 @@ main {
   }
 }
 
-@media screen and (min-width: 768px) {
+/*@media screen and (min-width: 768px) {
   .siteheader {
     margin-bottom: 1.2rem;
   }
-}
+}*/
