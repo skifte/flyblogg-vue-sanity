@@ -3,15 +3,18 @@
     <header class="siteheader">
       <div class="container">
         <div class="sitenav-wrapper">
-          <div class="svg-wrapper"> 
-            <SVGairplane/> 
-          </div>
+          
           <nav class="sitenav">
-            <router-link :to="{ name: 'Home'}" :class="{'router-link-active': $route.name === 'SinglePost'}">Flyblogg</router-link>
+            <router-link :to="{ name: 'Home'}" :class="{'router-link-active': $route.name === 'SinglePost'}">
+              <div class="svg-wrapper"> 
+                <SVGairplane/> 
+              </div>
+              <span>Flyblogg</span>
+            </router-link>
             <router-link :to="{ name: 'About'}">Om Anders Skifte</router-link>
-          </nav>
-        </div>
-        <hr aria-hidden="true"/>
+        </nav>
+      </div>
+      <hr aria-hidden="true"/>
       </div>
     </header>
     <main>

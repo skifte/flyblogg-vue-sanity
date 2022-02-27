@@ -63,39 +63,44 @@ main {
 .siteheader {
   padding-top: 2rem;
   font-size: 1.2rem;
-  
-  .sitenav {
+}
+.sitenav {
+  place-self: center;
+  display:flex;
+  align-items: center;
+  a {
     place-self: center;
-    a {
-      place-self: center;
-      font-weight: 600;
-      &:first-of-type {
+    font-weight: 600;
+    &:first-of-type {
+      display: flex;
+      align-items: center;
+      span {
         margin-right: 1rem;
-        padding-right: 1rem;
+      padding-right: 1rem;
         border-right: 1px solid #333;
       }
     }
-    .router-link-active {
-      color: #2c3e50;
-      text-decoration: underline;
-    }
+  }
+  .router-link-active {
+    color: #2c3e50;
+    text-decoration: underline;
   }
 }
 
-.sitenav-wrapper {
-  display:flex;
-  align-items: center;
+
+.sitenav {
   .svg-wrapper {
-    width: 2rem;
-    height: 2rem;
-    padding: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    padding: .8rem;
     margin: 0 1rem;
+    display: inline-block;
     background-color: black;
     border-radius: 50%;
     box-sizing: content-box;
     .svg-airplane {
       height: auto;
-      width: 1.8rem;
+      width: 1.1rem;
       /*animation-name: spin-airplane;
       animation-duration: 1500ms;
       animation-iteration-count: 1;
@@ -132,8 +137,17 @@ main {
   }
 }
 
-/*@media screen and (min-width: 768px) {
-  .siteheader {
-    margin-bottom: 1.2rem;
+@media screen and (min-width: 768px) {
+  .sitenav {
+    .svg-wrapper {
+      width: 1.8rem;
+      height: 1.8rem;
+      padding: .8rem;
+      .svg-airplane { 
+        width: 1.5rem;
+        position: relative;
+        top: 1px;
+      }
+    }
   }
-}*/
+}
