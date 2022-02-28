@@ -23,7 +23,6 @@
     "sanity-blocks-vue-component": "^1.0.1",
     "vue": "^3.0.0",
     "vue-lite-youtube-embed": "^1.0.4",
-    "vue-meta": "^2.4.0",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
