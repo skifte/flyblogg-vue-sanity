@@ -2,8 +2,6 @@
   <div class="app-wrapper">
     <header class="siteheader">
       <div class="container">
-        <div class="sitenav-wrapper">
-          
           <nav class="sitenav">
             <router-link :to="{ name: 'Home'}" :class="{'router-link-active': $route.name === 'SinglePost'}">
               <div class="svg-wrapper"> 
@@ -13,8 +11,6 @@
             </router-link>
             <router-link :to="{ name: 'About'}">Om Anders Skifte</router-link>
         </nav>
-      </div>
-      <hr aria-hidden="true"/>
       </div>
     </header>
     <main>

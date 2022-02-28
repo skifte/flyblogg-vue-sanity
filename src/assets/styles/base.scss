@@ -32,6 +32,11 @@ main {
   }
 }
 
+main {
+  min-height: 60vh;
+}
+
+
 .container {
   margin:0 auto;
   max-width: 56.25rem; //960px;	
@@ -63,6 +68,8 @@ main {
 .siteheader {
   padding-top: 2rem;
   font-size: 1.2rem;
+  margin-bottom: 3rem;
+  //background-color: v.$gray-dark;
 }
 .sitenav {
   place-self: center;
@@ -70,30 +77,26 @@ main {
   align-items: center;
   a {
     place-self: center;
-    font-weight: 600;
+    font-weight: 400;
     &:first-of-type {
       display: flex;
       align-items: center;
       span {
         margin-right: 1rem;
-      padding-right: 1rem;
+        padding-right: 1rem;
         border-right: 1px solid #333;
       }
     }
+    &.router-link-active {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
   }
-  .router-link-active {
-    color: #2c3e50;
-    text-decoration: underline;
-  }
-}
-
-
-.sitenav {
   .svg-wrapper {
     width: 1.2rem;
     height: 1.2rem;
-    padding: .8rem;
-    margin: 0 1rem;
+    padding: .5rem;
+    margin-right: 1rem;
     display: inline-block;
     background-color: black;
     border-radius: 50%;
@@ -101,26 +104,10 @@ main {
     .svg-airplane {
       height: auto;
       width: 1.1rem;
-      /*animation-name: spin-airplane;
-      animation-duration: 1500ms;
-      animation-iteration-count: 1;
-      animation-timing-function: ease-in-out;*/
       transform: rotate(-.03turn);
     }
   }
 }
-
-/*@keyframes spin-airplane {
-  from {
-      transform:rotate(0deg);
-  }
-  to {
-      transform:rotate(350deg);
-  }
-}*/
-
-
-
 
 .sitefooter {
   box-sizing: border-box;
@@ -142,12 +129,30 @@ main {
     .svg-wrapper {
       width: 1.8rem;
       height: 1.8rem;
-      padding: .8rem;
+      // padding: .5rem;
       .svg-airplane { 
         width: 1.5rem;
         position: relative;
         top: 1px;
+        left: 1px;
       }
     }
   }
+  .siteheader {
+    margin-bottom:3.5em;
+  }
 }
+
+/*animation-name: spin-airplane;
+      animation-duration: 1500ms;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in-out;*/
+
+/*@keyframes spin-airplane {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(350deg);
+  }
+}*/
