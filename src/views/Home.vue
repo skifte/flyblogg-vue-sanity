@@ -11,7 +11,7 @@
         </router-link>
         <Meta :post="post"/>
         <p class="excerpt">{{post.excerpt}}</p>
-        <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" />
+        <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" :alt="post.image.alt" />
       
         <p>
           <router-link :to="`/flyblogg/${post.slug.current}`" class="read-more">
@@ -44,6 +44,7 @@ const query = `*[_type == "post"]{
   slug,
   excerpt,
   "image": teaserImage{
+    alt,
     asset->{
       _id,
       url,
@@ -88,6 +89,7 @@ export default {
         (posts) => {
           this.loading = false;
           this.posts = posts;
+          console.log(posts)
         },
         (error) => {
           this.error = error
