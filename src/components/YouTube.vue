@@ -1,5 +1,5 @@
 <template>
-  <figure class="video">
+  <figure class="figure photo">
     <LiteYouTubeEmbed :id="videoId" :title="title"></LiteYouTubeEmbed>
     <figcaption v-if="figcaption">
       {{figcaption}}
