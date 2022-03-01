@@ -32,6 +32,15 @@ const query = `*[slug.current == $slug] {
   publishedAt,
   title,
   slug,
+  excerpt,
+  "image": teaserImage{
+    alt,
+    asset->{
+      _id,
+      url,
+      metadata
+    },
+  },
   body,
   "gpstrack": gpstrack->{
     _id,
@@ -55,7 +64,7 @@ export default {
   data() {
     return {
       loading: true,
-      post: [],
+      post: null,
       error: null,
       blocks: [],
       serializers: {
@@ -70,20 +79,37 @@ export default {
     this.fetchData()
   },
   methods: {
+    updateHeadMeta(content) {
+      document.title = content.title
+      document.querySelector('#og-title').setAttribute('content', content.title)
+      document.querySelectorAll('#og-desc, #desc').forEach( 
+        elem => elem.setAttribute('content',content.excerpt))
+      document.querySelector('#og-url').setAttribute('content', 'https://skifte.com' + this.$route.fullPath)
+      document.querySelector('#og-type').setAttribute('content', 'article')
+      document.querySelectorAll('#og-img, #og-img-sec').forEach( 
+        elem => elem.setAttribute('content', this.imageUrlFor(content.image).width(1200).url()))
+      document.querySelector('#og-img-alt').setAttribute('content', content.image.alt)
+      document.querySelector('#og-img-type').setAttribute('content', 'image/jpg')
+      document.querySelector('#og-img-w').setAttribute('content', '1200')
+      document.querySelector('#og-img-h').setAttribute('content', Math.round(1200 / content.image.asset.metadata.dimensions.aspectRatio))
+    },
     imageUrlFor(source) {
       return imageBuilder.image(source)
     },
     fetchData() {
       this.error = this.post = null;
       this.loading = true;
-
       sanity.fetch(query, { slug: this.$route.params.slug }).then(
         (post) => {
           this.loading = false
           if (post !== null) {
             this.post = post
             this.blocks = post.body
-            document.title = post.title
+            /* document.title = post.title
+            document.querySelector('meta[property="og:title"]').setAttribute('content', post.title)
+            document.querySelectorAll('meta[name="description"], meta[property="og:description"]')
+            .forEach( x=> x.setAttribute("content",post.excerpt)) */
+            this.updateHeadMeta(this.post)
           } else {
             // Fant ikke data som matchet slug
             // vis 404-siden uten å endre url
@@ -106,6 +132,6 @@ export default {
         }
       )
     }
-  }
+  }  
 }
 </script>
