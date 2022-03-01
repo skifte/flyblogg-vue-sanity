@@ -9,7 +9,7 @@
         <router-link :to="`/flyblogg/${post.slug.current}`" class="post-link">
           <h2 class="post-title">{{ post.title }}</h2>
         </router-link>
-        <Meta :post="post"/>
+        <BylineMeta :post="post"/>
         <p class="excerpt">{{post.excerpt}}</p>
         <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" :alt="post.image.alt" />
       
@@ -28,7 +28,7 @@
 import sanity from "../client"
 import imageUrlBuilder from "@sanity/image-url"
 import {useMeta} from '@/helpers/helpers.js'
-import Meta from '@/components/MetaSection'
+import BylineMeta from '@/components/BylineMeta'
 import Error from '@/components/Error'
 
 const imageBuilder = imageUrlBuilder(sanity);
@@ -58,7 +58,7 @@ const query = `*[_type == "post"]{
 export default {
   name: "Home",
   components: { 
-    Meta,
+    BylineMeta,
     Error
   },
   data() {

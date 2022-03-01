@@ -8,7 +8,7 @@
 
     <article v-if="post" class="blogpost">
       <h1 class="post-title">{{ post.title }}</h1>
-      <Meta :post="post"/>
+      <BylineMeta :post="post"/>
       <SanityBlocks :blocks="blocks" :serializers="serializers"/>
       <Map v-if="post.gpstrack" :gpstrack="post.gpstrack"/>
     </article>
@@ -22,7 +22,7 @@ import {useMeta} from '@/helpers/helpers.js'
 import YouTube from '@/components/YouTube.vue'
 import Image from '@/components/Image.vue'
 import Map from '@/components/GPSTrack.vue'
-import Meta from '@/components/MetaSection'
+import BylineMeta from '@/components/BylineMeta'
 import Error from '@/components/Error'
 
 const query = `*[slug.current == $slug] {
@@ -53,7 +53,7 @@ export default {
   name: "SinglePost",
   components: { 
       SanityBlocks,
-      Meta,
+      BylineMeta,
       Map,
       Error
       },
