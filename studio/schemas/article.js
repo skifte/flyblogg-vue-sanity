@@ -18,6 +18,14 @@ export default {
       },
     },
     {
+      name: "excerpt",
+      title: "Excerpt",
+      type: "text",
+      options: {
+        maxLength: 200,
+      },
+    },
+    {
       name: 'body',
       title: 'Body',
       type: 'blockContent',
