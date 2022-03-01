@@ -9,7 +9,6 @@
     <article v-if="post" class="blogpost">
       <h1 class="post-title">{{ post.title }}</h1>
       <Meta :post="post" />
-      <!-- <img v-if="post.image" :src="imageUrlFor(post.image).width(800)" /> -->
       <SanityBlocks :blocks="blocks" :serializers="serializers" />
       <hr/>
       <h2>Skriblerier</h2>
@@ -89,16 +88,26 @@
 <script>
 import { SanityBlocks } from "sanity-blocks-vue-component"
 import sanity from "../client"
-import imageUrlBuilder from "@sanity/image-url"
+import {useMeta} from '@/helpers/helpers.js'
 import Image from "@/components/Image.vue"
-import Error from "@/components/Error.vue";
+import Error from "@/components/Error.vue"
 
-const imageBuilder = imageUrlBuilder(sanity);
 const query = `*[slug.current == $slug] {
   _id,
   title,
   slug,
-  body,
+   "body": body[] {
+    ...select(
+      _type == "image" => {
+        ...,
+        "asset": asset-> {
+          _id,
+          url,
+          metadata
+        }
+      } 
+    )
+    }
 }[0]`;
 
 export default {
@@ -124,20 +133,18 @@ export default {
     this.fetchData();
   },
   methods: {
-    imageUrlFor(source) {
-      return imageBuilder.image(source);
-    },
     fetchData() {
-      this.error = this.post = null;
-      this.loading = true;
+      this.error = this.post = null
+      this.loading = true
 
       sanity.fetch(query, { slug: this.$route.path.substring(1) }).then(
         (post) => {
-          this.loading = false;
+          this.loading = false
           if (post !== null) {
-            this.post = post;
-            this.blocks = post.body;
-            document.title = post.title;
+            this.post = post
+            this.blocks = post.body
+            // document.title = post.title
+            useMeta(this.post, this.$route)
           } else {
             // Fant ikke data som matchet slug
             // vis 404-siden uten å endre url
@@ -155,8 +162,8 @@ export default {
           } // else
         },
         (error) => {
-          this.error = error;
-          this.loading = false;
+          this.error = error
+          this.loading = false
         }
       );
     },

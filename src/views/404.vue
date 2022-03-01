@@ -9,10 +9,20 @@
 </template>
 
 <script>
+import {useMeta} from '@/helpers/helpers.js'
 export default {
   name: "NotFoundPage",
+  data() {
+    return {
+      metaContent: {
+        title: '404 | Anders Skifte',
+        excerpt: 'Siden du leter etter har blitt flyttet eller eksisterer ikke lenger',
+        ogtype: 'website'
+      }
+    }
+  },
   created() {
-    document.title = '404 - Flyblogg - Anders Skifte'
+    useMeta(this.metaContent, this.$route)
   }
 }
 </script>
