@@ -34,7 +34,7 @@ import Error from '@/components/Error'
 const imageBuilder = imageUrlBuilder(sanity);
 
 // https://www.sanity.io/docs/query-cheat-sheet#conditionals-64a36d80be73
-const query = `*[_type == "post"]{
+const query = `*[_type == "post"] | order(publishedAt desc) {
   _id,
   publishedAt,
   categories->{
