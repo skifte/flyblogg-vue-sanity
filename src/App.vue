@@ -19,7 +19,7 @@
   </div>
   <footer class="sitefooter">
     <div class="container">
-      Laget med <a href="https://vuejs.org/">Vue.js</a> og <a href="https://www.sanity.io/">Sanity.io</a>. Kjører hos <a href="https://www.netlify.com/">Netlify</a>. Koden er på <a href="https://github.com/skifte/vue-sanity-blog">Github</a>.
+      Flybloggen er laget med <a href="https://vuejs.org/">Vue.js</a> og <a href="https://www.sanity.io/">Sanity.io</a>. Den kjører hos <a href="https://www.netlify.com/">Netlify</a>. Koden er på <a href="https://github.com/skifte/vue-sanity-blog">Github</a>.
     </div>
   </footer>
 </template>

@@ -26,9 +26,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "404" */ '@/views/SinglePost.vue')
   },
   { 
+    path: '/404', 
+    name: '404', 
+    component: import(/* webpackChunkName: "404" */ '@/views/404.vue') 
+  },
+  { 
     path: '/:pathMatch(.*)*', 
     name: '404', 
-    component: import(/* webpackChunkName: "404" */ '@/views/404.vue') }
+    component: import(/* webpackChunkName: "404" */ '@/views/404.vue') 
+  }
 ]
 
 const router = createRouter({
