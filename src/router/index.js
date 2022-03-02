@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { trackRouter } from 'vue-gtag-next'
 import Home from '../views/Home.vue'
+import NotFoundPage from '../views/404.vue'
 
 const routes = [
   {
@@ -26,14 +27,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "404" */ '@/views/SinglePost.vue')
   },
   { 
-    path: '/404', 
-    name: '404', 
-    component: import(/* webpackChunkName: "404" */ '@/views/404.vue') 
-  },
-  { 
     path: '/:pathMatch(.*)*', 
     name: '404', 
-    component: import(/* webpackChunkName: "404" */ '@/views/404.vue') 
+    component: NotFoundPage
   }
 ]
 
