@@ -23,6 +23,16 @@ export default {
   },
   created() {
     useMeta(this.metaContent, this.$route)
+    // react-snap trenger egen meta på 404-siden
+      const meta = document.createElement('meta')
+      meta.name ='prerender-status-code'
+      meta.content = '404'
+      meta.id = 'meta404'
+      document.getElementsByTagName('head')[0].appendChild(meta)
+  },
+  unmounted() {
+    const meta = document.getElementById('meta404')
+    meta.remove()
   }
 }
 </script>
