@@ -18,9 +18,11 @@ export function useMeta(content, route) {
     return obj._type === 'image'
   }) : 'undefined'
 
+  const ogTitle = content.ogTitle ? content.ogTitle : content.title
+
   // update metadata + title
     document.title = content.title
-    document.querySelector('#og-title').setAttribute('content', content.title)
+    document.querySelector('#og-title').setAttribute('content', ogTitle)
     document.querySelectorAll('#og-desc, #desc').forEach( 
       elem => elem.setAttribute('content',content.excerpt))   
     document.querySelector('#og-url').setAttribute('content', 'https://skifte.com' + route.fullPath)

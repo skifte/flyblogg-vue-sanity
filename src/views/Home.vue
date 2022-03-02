@@ -68,6 +68,7 @@ export default {
       error: null,
       metaContent: {
         title: 'Flyblogg | Anders Skifte',
+        ogTitle: 'Kaptein Skiftes flyblogg',
         excerpt: 'En blogg som utelukkende dreier seg om flyging med småfly',
         ogtype: 'website',
         image: {
