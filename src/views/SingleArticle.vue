@@ -96,7 +96,9 @@ const query = `*[slug.current == $slug] {
   _id,
   title,
   slug,
+  excerpt,
    "body": body[] {
+    ...,
     ...select(
       _type == "image" => {
         ...,
@@ -143,7 +145,6 @@ export default {
           if (post !== null) {
             this.post = post
             this.blocks = post.body
-            // document.title = post.title
             useMeta(this.post, this.$route)
           } else {
             // Fant ikke data som matchet slug
