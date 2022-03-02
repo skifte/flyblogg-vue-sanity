@@ -61,7 +61,7 @@ export default {
     imageUrl: function() {
       return builder
         .image(this.asset)
-        .width(960)
+        .width(900)
         .auto(this.auto)
         .fit(this.fit)
     }

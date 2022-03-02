@@ -11,7 +11,7 @@
         </router-link>
         <BylineMeta :post="post"/>
         <p class="excerpt">{{post.excerpt}}</p>
-        <img v-if="post.image" :src="imageUrlFor(post.image).height(800)" :alt="post.image.alt" />
+        <img v-if="post.image" :src="imageUrlFor(post.image).width(900).auto('format')" :alt="post.image.alt" />
       
         <p>
           <router-link :to="`/flyblogg/${post.slug.current}`" class="read-more">
