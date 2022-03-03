@@ -88,7 +88,8 @@
     p,
     ul,
     ol,
-    figcaption {
+    figcaption,
+    footer {
       font-size: 1.2rem;
       line-height: 1.75;
     }
@@ -117,7 +118,8 @@
   }
   
   .sitenav a,
-  .read-more {
+  .read-more,
+  .post-prev-next a {
     color: v.$link-color;
     text-decoration-color: #fff;
     &:hover,
@@ -153,24 +155,4 @@
     margin: 2rem 0;
     padding-left: 2rem;
     padding-right: 2rem;
-  }
-  
-  @media (max-width: 1020px) {
-    h1 {
-      font-size: 3rem;
-    }
-  
-    h1 {
-      font-size: 2.4rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-  
-    p,
-    ul,
-    ol {
-      font-size: 1.2rem;
-      margin: 1em 0;
-    }
   }

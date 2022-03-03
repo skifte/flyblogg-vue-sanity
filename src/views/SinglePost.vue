@@ -11,6 +11,20 @@
       <BylineMeta :post="post"/>
       <SanityBlocks :blocks="blocks" :serializers="serializers"/>
       <Map v-if="post.gpstrack" :gpstrack="post.gpstrack"/>
+      <hr/>
+      <footer class="card post-footer">
+        <nav>
+          <h2 class="text-center">Sjekk også ut</h2>
+          <div class="post-prev-next">
+            <router-link v-if="post.prevPost" class="prev" :to="'/flyblogg/' + post.prevPost.slug.current">
+              &#8592; {{ post.prevPost.title }}
+            </router-link>
+            <router-link v-if="post.nextPost" class="next" :to="'/flyblogg/' + post.nextPost.slug.current">
+              {{ post.nextPost.title }} &#8594;
+            </router-link>
+          </div>
+        </nav>
+      </footer>
     </article>
   </div>
 </template>
@@ -46,7 +60,9 @@ const query = `*[slug.current == $slug] {
     src,
     caption,
   },
-"estimatedReadingTime": round(length(pt::text(body)) / 4.5 / 180 )
+"estimatedReadingTime": round(length(pt::text(body)) / 4.5 / 180 ),
+"prevPost": *[_type == 'post' && publishedAt < ^.publishedAt] | order(publishedAt desc)[0]{title,slug},
+"nextPost": *[_type == 'post' && publishedAt > ^.publishedAt] | order(publishedAt asc)[0]{title,slug}
 }[0]`
 
 export default {
