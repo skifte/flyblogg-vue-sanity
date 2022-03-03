@@ -69,7 +69,7 @@ export default {
       metaContent: {
         title: 'Flyblogg | Anders Skifte',
         ogTitle: 'Kaptein Skiftes flyblogg',
-        excerpt: 'En blogg som utelukkende dreier seg om flyging med småfly',
+        excerpt: 'En blogg som utelukkende dreier seg om flyging med småfly i inn- og utland',
         ogtype: 'website',
         image: {
           alt: 'Anders bak spakene over Oslo',
