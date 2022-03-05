@@ -36,6 +36,7 @@ import {useMeta} from '@/helpers/helpers.js'
 import YouTube from '@/components/sanitySerializers/YouTube.vue'
 import Image from '@/components/sanitySerializers/Image.vue'
 import InternalLink from '@/components/sanitySerializers/InternalLink.vue'
+import Abbr from '@/components/sanitySerializers/Abbreviation.vue'
 import Map from '@/components/GPSTrack.vue'
 import BylineMeta from '@/components/BylineMeta'
 import Error from '@/components/Error'
@@ -94,7 +95,8 @@ export default {
           image: Image
         },
         marks: {
-          internalLink: InternalLink
+          internalLink: InternalLink,
+          abbr: Abbr
         }
       }
     }

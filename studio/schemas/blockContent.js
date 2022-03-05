@@ -58,6 +58,9 @@ export default {
             name: 'internalLink',
             type: 'object',
             title: 'Internal link',
+            blockEditor: {
+              icon: () => '🚀'
+            },
             fields: [
               {
                 name: 'reference',
@@ -68,6 +71,21 @@ export default {
                   // + evt andre typer
                   // https://www.sanity.io/guides/portable-text-internal-and-external-links
                 ]
+              }
+            ]
+          },
+          {
+            name: 'abbr',
+            type: 'object',
+            title: 'Abbreviation',
+            blockEditor: {
+              icon: () => 'ℹ'
+            },
+            fields: [
+              {
+                name: 'title',
+                type: 'string',
+                title: 'Meaning of abbr'
               }
             ]
           }
