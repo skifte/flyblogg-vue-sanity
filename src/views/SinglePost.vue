@@ -33,8 +33,9 @@
 import { SanityBlocks } from "sanity-blocks-vue-component"
 import sanity from "../client"
 import {useMeta} from '@/helpers/helpers.js'
-import YouTube from '@/components/YouTube.vue'
-import Image from '@/components/Image.vue'
+import YouTube from '@/components/sanitySerializers/YouTube.vue'
+import Image from '@/components/sanitySerializers/Image.vue'
+import InternalLink from '@/components/sanitySerializers/InternalLink.vue'
 import Map from '@/components/GPSTrack.vue'
 import BylineMeta from '@/components/BylineMeta'
 import Error from '@/components/Error'
@@ -53,7 +54,15 @@ const query = `*[slug.current == $slug] {
       metadata
     },
   },
-  body,
+  body[]{
+    ...,
+    markDefs[]{
+      ...,
+      _type == "internalLink" => {
+        "slug": @.reference->slug
+      }
+    }
+  },
   "gpstrack": gpstrack->{
     _id,
     title,
@@ -83,9 +92,12 @@ export default {
         types: {
           youtube: YouTube,
           image: Image
+        },
+        marks: {
+          internalLink: InternalLink
         }
       }
-    };
+    }
   },
   created() {
     this.fetchData()

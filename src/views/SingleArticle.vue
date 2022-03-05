@@ -89,7 +89,7 @@
 import { SanityBlocks } from "sanity-blocks-vue-component"
 import sanity from "../client"
 import {useMeta} from '@/helpers/helpers.js'
-import Image from "@/components/Image.vue"
+import Image from '@/components/sanitySerializers/Image.vue'
 import Error from "@/components/Error.vue"
 
 const query = `*[slug.current == $slug] {
