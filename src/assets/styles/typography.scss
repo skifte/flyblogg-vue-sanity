@@ -121,7 +121,7 @@
   .read-more,
   .post-prev-next a {
     color: v.$link-color;
-    text-decoration-color: #fff;
+    text-decoration-color: transparent;
     &:hover,
     &:focus {
       color: v.$link-color-hover;
